@@ -1,31 +1,31 @@
-# Ksobrenatural .vimrc
+" Ksobrenatural .vimrc
 
-# Sintax highlighting
+" Sintax highlighting
 
 syntax on
 
-# Set my favourite color scheme
+" Set my favourite color scheme
 colorscheme koehler
 
-# Show line number
+" Show line number
 set number
 
-# Show command
+" Show command
 set showcmd
 
-#  Show line where the cursor is
+"  Show line where the cursor is
 set cursorline
 
-# Identify specific file types
+" Identify specific file types
 filetype indent on
 
-# Command autocompletation
+" Command autocompletation
 set wildmenu
 
-# Highlight matching (){}[]
+" Highlight matching (){}[]
 set showmatch
 
-# Searching configuration
+" Searching configuration
 set incsearch
 set hlsearch
 
