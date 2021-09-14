@@ -43,6 +43,6 @@ alias hig='history | grep'
 alias rand='cat /dev/urandom | LC_ALL=C tr -dc 'A-Za-z0-9' | head -c 32 && echo'
 
 # ---	My desktop specific
-alias cmus='flatpak run io.github.cmus.cmus'
-alias mpv='flatpak run io.mpv.Mpv'
+alias cmus='toolbox run cmus'
+alias mpv='toolbox run mpv'
 
