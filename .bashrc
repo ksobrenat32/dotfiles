@@ -37,7 +37,8 @@ EDITOR="/usr/bin/vim"
 bind 'set completion-ignore-case on'
 
 # ---	Colors
-PS1="\e[3;33m[\e[40m\u@\H]\e[m\e[0;37m:\W $\e[m "
+#PS1="\e[3;33m[\e[40m\u@\H]\e[0m\e[0;37m:\W $\e[m "
+PS1="\[\e[3;33m\]\[\e[40m\][\u@\H]\[\e[0m\]\[\e[0;37m\]:\W $\[\e[0m\] "
 
 # ---	Some aliases
 alias pind='ping -c 5 debian.org'
