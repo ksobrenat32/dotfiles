@@ -36,6 +36,9 @@ EDITOR="/usr/bin/vim"
 # Set the autocompletation to case insensitive 
 bind 'set completion-ignore-case on'
 
+# ---	Colors
+PS1="\e[3;33m[\e[40m\u@\H]\e[m\e[0;37m:\W $\e[m "
+
 # ---	Some aliases
 alias pind='ping -c 5 debian.org'
 alias hig='history | grep'
