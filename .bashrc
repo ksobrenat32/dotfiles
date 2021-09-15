@@ -41,8 +41,11 @@ alias pind='ping -c 5 debian.org'
 alias hig='history | grep'
 # Generate random password of 32 characters
 alias rand='cat /dev/urandom | LC_ALL=C tr -dc 'A-Za-z0-9' | head -c 32 && echo'
+alias pbip4="curl api4.ipify.org"
+alias pbip6="curl api6.ipify.org"
 
 # ---	My desktop specific
 alias cmus='toolbox run cmus'
 alias mpv='toolbox run mpv'
+alias ffmpeg='toolbox run ffmpeg'
 
