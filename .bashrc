@@ -5,14 +5,16 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-# ---	Add home path
-PATH="$HOME/.local/bin:$PATH"
-
 # ---	If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
+
+# ---	Add home path
+if [ -d $HOME/.local/bin ]; then
+	PATH="$HOME/.local/bin:$PATH"
+fi
 
 # ---	History configuration
 # Ignore lines that begin with a space or that are duplicated
@@ -33,6 +35,8 @@ alias cp='cp --reflink=auto'
 # Use vim as default editor
 SELECTED_EDITOR="/usr/bin/vim"
 EDITOR="/usr/bin/vim"
+# Set default fzf command
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 # Set the autocompletation to case insensitive 
 bind 'set completion-ignore-case on'
 
