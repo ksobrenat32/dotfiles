@@ -6,13 +6,13 @@
 alias ls='ls -A --color=auto'
 alias cp='cp --reflink=auto'
 alias ping='ping -c 5'
-alias rrm='rm --preserve-root'
+alias rm='rm --preserve-root'
 alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
 alias chgrp='chgrp --preserve-root'
 
 # Safe rm
-alias rm='mv --force -t ~/.local/share/Trash/cli'
+alias srm='mv --force -t ~/.local/share/Trash/cli'
 
 # Default flatpak command as user
 alias flatpak='flatpak --user'
