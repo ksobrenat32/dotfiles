@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -e
+
+# Script for installing dotfiles
+
+# General config
+ln -s `pwd`/.bash* ~
+ln -s `pwd`/.profile ~
+ln -s `pwd`/.vimrc ~
+
+# Programs config
+mkdir -p ~/.config
+ln -s `pwd`/htop ~/.config/
+ln -s `pwd`/neofetch ~/.config/
