@@ -2,14 +2,41 @@
 
 set -e
 
-# Script for installing dotfiles
+# Script for installing dotfiles and make the pc confortable
+# It can also be used to update
 
-# General config
-ln -s `pwd`/.bash* ~
-ln -s `pwd`/.profile ~
-ln -s `pwd`/.vimrc ~
+# Install git
+if ! [ -x "$(command -v git)" ]; then
+    if [ -x "$(command -v apt)" ]; then echo "Installing git" && sudo apt update -y && sudo apt install git -y
+    elif [ -x "$(command -v dnf)" ]; then echo "Installing git" && sudo dnf install git -y
+    else
+        echo "Failed to identy package manager :(, Install git"
+	exit 1
+    fi
+fi
 
-# Programs config
-mkdir -p ~/.config
-ln -s `pwd`/htop ~/.config/
-ln -s `pwd`/neofetch ~/.config/
+# Check if repositories are clones or it is updating
+if [ -d ~/.local/git/dotfiles ] && [ -d ~/.local/git/scripts ]; then
+    # Pull repos
+    git -C ~/.local/git/dotfiles/ pull
+    git -C ~/.local/git/scripts/ pull
+else
+    # Create paths
+    mkdir -p ~/.config
+    mkdir -p ~/.local/{bin,git}
+    # Clone repos
+    git clone https://github.com/ksobrenat32/dotfiles  ~/.local/git/dotfiles
+    git clone https://github.com/ksobrenat32/scripts  ~/.local/git/scripts
+fi
+
+# Create soft links
+
+# Scripts
+chmod +x ~/.local/git/scripts/*
+ln -fs ~/.local/git/scripts/* ~/.local/bin
+rm  ~/.local/bin/README.md
+# Config
+ln -fs ~/.local/git/dotfiles/.bash* ~
+ln -fs ~/.local/git/dotfiles/.profile ~
+ln -fs ~/.local/git/dotfiles/.vimrc ~
+ln -fs ~/.local/git/dotfiles/config/* ~/.config/
