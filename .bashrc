@@ -28,7 +28,22 @@ shopt -s checkwinsize
 bind 'set completion-ignore-case on'
 
 # ---	Colors
+# White
+#PS1="\[\e[40m\][\u@\H]\[\e[0m\]\[\e[0;37m\]:\W $\[\e[0m\] "
+# Red
+#PS1="\[\e[3;31m\]\[\e[40m\][\u@\H]\[\e[0m\]\[\e[0;37m\]:\W $\[\e[0m\] "
+# Green
+#PS1="\[\e[3;32m\]\[\e[40m\][\u@\H]\[\e[0m\]\[\e[0;37m\]:\W $\[\e[0m\] "
+# Brown
 PS1="\[\e[3;33m\]\[\e[40m\][\u@\H]\[\e[0m\]\[\e[0;37m\]:\W $\[\e[0m\] "
+# Blue
+#PS1="\[\e[3;34m\]\[\e[40m\][\u@\H]\[\e[0m\]\[\e[0;37m\]:\W $\[\e[0m\] "
+# Purple
+#PS1="\[\e[3;35m\]\[\e[40m\][\u@\H]\[\e[0m\]\[\e[0;37m\]:\W $\[\e[0m\] "
+# Cyan
+#PS1="\[\e[3;36m\]\[\e[40m\][\u@\H]\[\e[0m\]\[\e[0;37m\]:\W $\[\e[0m\] "
+# Light Gray
+#PS1="\[\e[3;37m\]\[\e[40m\][\u@\H]\[\e[0m\]\[\e[0;37m\]:\W $\[\e[0m\] "
 
 # ---	Source custom aliases
 if [ -f ~/.bash_aliases ]; then
