@@ -9,6 +9,9 @@ fi
 export SELECTED_EDITOR="/usr/bin/vim"
 export EDITOR="/usr/bin/vim"
 
+# Git GPG key
+export GPG_TTY=$(tty)
+
 # Set default fzf command for vim
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 # Nodejs
