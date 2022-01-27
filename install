@@ -25,8 +25,8 @@ else
     mkdir -p ~/.config
     mkdir -p ~/.local/{bin,git}
     # Clone repos
-    git clone https://github.com/ksobrenat32/dotfiles  ~/.local/git/dotfiles
-    git clone https://github.com/ksobrenat32/scripts  ~/.local/git/scripts
+    git clone https://codeberg.org/ksobrenat32/dotfiles  ~/.local/git/dotfiles
+    git clone https://codeberg.org/ksobrenat32/scripts  ~/.local/git/scripts
 fi
 
 # Create soft links
