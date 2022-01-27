@@ -20,7 +20,8 @@ alias flatpak='flatpak --user'
 # ---	Some aliases
 alias pind='ping -c 5 debian.org'
 alias hig='history | grep'
-alias rand=' openssl rand -base64 32'
+alias rand='openssl rand -base64 32'
+alias randy='cat /dev/urandom | LC_ALL=C tr -dc 'A-Za-z0-9' | head -c 32 && echo'
 alias pbip4="curl api4.ipify.org"
 alias pbip6="curl api6.ipify.org"
 alias svim='sudo vim'
