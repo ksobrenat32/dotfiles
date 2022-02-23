@@ -24,6 +24,8 @@ set hlsearch
 set splitbelow
 set splitright
 set diffopt=vertical
+" Configure indents as 4 spaces
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " --- Plugins (Install https://github.com/junegunn/vim-plug)
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
