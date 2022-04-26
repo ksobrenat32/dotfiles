@@ -29,12 +29,14 @@ else
     git clone https://github.com/ksobrenat32/scripts  ~/.local/git/scripts
 fi
 
-# Create soft links
+# Disable all plugings initially
+sed -i 's/Plug /"Plug/g' ~/.local/git/dotfiles/.vimrc
 
+# --- Create soft links
 # Scripts
 chmod +x ~/.local/git/scripts/*
 ln -fs ~/.local/git/scripts/* ~/.local/bin
-rm  ~/.local/bin/README.md
+rm  ~/.local/bin/README.md ~/.local/bin/LICENSE
 # Config
 ln -fs ~/.local/git/dotfiles/.bash* ~
 ln -fs ~/.local/git/dotfiles/.profile ~
