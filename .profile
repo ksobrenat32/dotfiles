@@ -12,8 +12,9 @@ export EDITOR="/usr/bin/vim"
 # Git GPG key
 export GPG_TTY=$(tty)
 
-# Set default fzf command for vim
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-# Nodejs
-export NODEJS_HOME=$HOME/.local/opt/node
-export PATH=$PATH:$NODEJS_HOME/bin
+# XDG Base Directory
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"

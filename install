@@ -3,7 +3,7 @@
 set -e
 
 # Script for installing dotfiles and make the pc confortable
-# It can also be used to update
+# It can also be used to update the dotfiles
 
 # Install git
 if ! [ -x "$(command -v git)" ]; then

@@ -14,9 +14,6 @@ alias chgrp='chgrp --preserve-root'
 # Safe rm
 alias srm='mv --force -t ~/.local/share/Trash/cli'
 
-# Default flatpak command as user
-alias flatpak='flatpak --user'
-
 # ---	Some aliases
 alias pind='ping -c 5 debian.org'
 alias hig='history | grep'
@@ -29,4 +26,5 @@ alias aports='netstat -tulanp'
 alias ramfo='free -mlth'
 alias psram='ps auxf | sort -nr -k 4 | head -10'
 alias pscpu='ps auxf | sort -nr -k 3 | head -10'
+alias psgrep='ps ax | grep'
 alias lt='ls -a --human-readable --size -1 -S --classify'
