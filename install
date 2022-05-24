@@ -15,18 +15,13 @@ if ! [ -x "$(command -v git)" ]; then
     fi
 fi
 
-# Check if repositories are clones or it is updating
-if [ -d ~/.local/git/dotfiles ] && [ -d ~/.local/git/scripts ]; then
-    # Pull repos
+# Check if repositorie is cloning or it is updating
+if [ -d ~/.local/git/dotfiles ] ; then
     git -C ~/.local/git/dotfiles/ pull
-    git -C ~/.local/git/scripts/ pull
 else
-    # Create paths
     mkdir -p ~/.config
     mkdir -p ~/.local/{bin,git}
-    # Clone repos
     git clone https://github.com/ksobrenat32/dotfiles  ~/.local/git/dotfiles
-    git clone https://github.com/ksobrenat32/scripts  ~/.local/git/scripts
 fi
 
 # Disable all plugings initially
@@ -34,11 +29,8 @@ sed -i 's/Plug /"Plug/g' ~/.local/git/dotfiles/.vimrc
 
 # --- Create soft links
 # Scripts
-chmod +x ~/.local/git/scripts/*
-ln -fs ~/.local/git/scripts/* ~/.local/bin
-rm  ~/.local/bin/README.md ~/.local/bin/LICENSE
-# Config
 ln -fs ~/.local/git/dotfiles/.bash* ~
 ln -fs ~/.local/git/dotfiles/.profile ~
 ln -fs ~/.local/git/dotfiles/.vimrc ~
 ln -fs ~/.local/git/dotfiles/config/* ~/.config/
+ln -fs ~/.local/git/dotfiles/bin/update* ~/.local/bin/
