@@ -22,10 +22,8 @@ else
     mkdir -p ~/.config
     mkdir -p ~/.local/{bin,git}
     git clone https://github.com/ksobrenat32/dotfiles  ~/.local/git/dotfiles
+    sed -i 's/Plug /"Plug/g' ~/.local/git/dotfiles/.vimrc
 fi
-
-# Disable all plugings initially
-sed -i 's/Plug /"Plug/g' ~/.local/git/dotfiles/.vimrc
 
 # --- Create soft links
 # Scripts
