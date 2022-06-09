@@ -3,7 +3,8 @@
 # --- Aliases ---
 
 # Add good defaults
-alias ls='ls -A --color=auto'
+alias ls='ls --color=auto'
+alias la='ls -Alh --color=auto'
 alias cp='cp --reflink=auto'
 alias ping='ping -c 5'
 alias rm='rm --preserve-root'
