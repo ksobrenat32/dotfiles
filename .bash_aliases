@@ -1,7 +1,5 @@
 #.bash_aliases
 
-# --- Aliases ---
-
 # Add good defaults
 alias ls='ls --color=auto'
 alias la='ls -Alh --color=auto'
@@ -11,9 +9,6 @@ alias rm='rm --preserve-root'
 alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
 alias chgrp='chgrp --preserve-root'
-
-# Safe rm
-alias srm='mv --force -t ~/.local/share/Trash/cli'
 
 # shurtcuts
 alias nohis='set +o history'
@@ -35,5 +30,5 @@ alias psgrep='ps ax | grep'
 alias pind='ping -c 5 debian.org'
 alias pbip4="curl api4.ipify.org"
 alias pbip6="curl api6.ipify.org"
-alias public-ip-scan='nmap -v -T4 -sV -A -p 1-65535'
-alias aports='netstat -tulanp'
+alias public-ports-scan='nmap -v -T4 -sV -A -p 1-65535'
+alias local-ports='netstat -tulanp'

@@ -1,6 +1,23 @@
 #! /usr/bin/env bash
 
+set -e
+
 # Script that updates a desktop, with apt, dnf(and rpm-ostree) or pacman, also flatpak and toolbox.
+
+if [ "$1" == "-y" ]; then
+    ## Common package manager
+    if [ -x "$(command -v apt)" ]; then echo " --- Upgrading with apt" && sudo apt -y update && sudo apt -y upgrade && sudo apt -y autoremove
+    elif [ -x "$(command -v dnf)" ]; then echo " --- Upgrading with dnf" && sudo dnf -y update && sudo dnf -y autoremove
+    elif [ -x "$(command -v rpm-ostree)" ]; then echo " --- Upgrading with rpm-ostree" && rpm-ostree -y upgrade
+    elif [ -x "$(command -v pacman)" ]; then echo " --- Upgrading with pacman" && sudo pacman -Syu --noconfirm
+    else echo "Failed to identy package manager :(, upgrade by yourself"; fi
+    ## If having flatpak
+    [ -x "$(command -v flatpak)" ] && echo " --- Upgrading flatpak" && flatpak --user -y update && sudo flatpak -y update
+    ## If having toolbox (It uses dnf because toolbox is mainly used with fedora)
+    [ -x "$(command -v toolbox)" ] && echo " --- Upgrading main toolbox" && toolbox run sudo dnf -y upgrade
+    echo " --- Done ;)"
+    exit 0
+fi
 
 ## Common package manager
 if [ -x "$(command -v apt)" ];       then echo " --- Upgrading with apt" && sudo apt update && sudo apt upgrade && sudo apt autoremove
@@ -8,13 +25,8 @@ elif [ -x "$(command -v dnf)" ];     then echo " --- Upgrading with dnf" && sudo
 elif [ -x "$(command -v rpm-ostree)" ];     then echo " --- Upgrading with rpm-ostree" && rpm-ostree upgrade
 elif [ -x "$(command -v pacman)" ];  then echo " --- Upgrading with pacman" && sudo pacman -Syu
 else echo "Failed to identy package manager :(, upgrade by yourself"; fi
-
 ## If having flatpak
 [ -x "$(command -v flatpak)" ] && echo " --- Upgrading flatpak" && flatpak --user update && sudo flatpak update
-
 ## If having toolbox (It uses dnf because toolbox is mainly used with fedora)
 [ -x "$(command -v toolbox)" ] && echo " --- Upgrading main toolbox" && toolbox run sudo dnf upgrade
-
-
 echo " --- Done ;)"
-
