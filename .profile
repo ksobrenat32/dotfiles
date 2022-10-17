@@ -12,6 +12,9 @@ export EDITOR="/usr/bin/vim"
 # Git GPG key
 export GPG_TTY=$(tty)
 
+# Disable less history
+export LESSHISTFILE=-
+
 # XDG Base Directory
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
