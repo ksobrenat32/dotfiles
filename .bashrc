@@ -50,12 +50,12 @@ if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
-# ---	Source custom functions
-if [ -f ~/.bash_custom ]; then
-	. ~/.bash_custom
-fi
-
 # ---	Source profile
 if [ -f ~/.profile ]; then
 	. ~/.profile
+fi
+
+# ---	Source custom functions
+if [ -f ~/.bash_custom ]; then
+	. ~/.bash_custom
 fi
