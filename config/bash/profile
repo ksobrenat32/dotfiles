@@ -1,9 +1,4 @@
-#.profile
-
-# Add home bin path
-if [ -d ~/.local/bin ]; then
-	export PATH="~/.local/bin:$PATH"
-fi
+#!/bin/sh
 
 # Use vim as default editor
 export SELECTED_EDITOR="/usr/bin/vim"
@@ -20,3 +15,11 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
+
+# Source Aliases
+if [ -f ~/.config/bash/aliases ]; then
+	. ~/.config/bash/aliases
+fi
+
+# Source custom scripts
+source ~/.config/bash/*.bash

@@ -1,4 +1,4 @@
-# Ksobrenatural .bashrc
+# My bashrc
 
 # ---	Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -45,17 +45,7 @@ PS1="\[\e[3;33m\]\[\e[40m\][\u@\H]\[\e[0m\]\[\e[0;37m\]:\W $\[\e[0m\] "
 # Light Gray
 #PS1="\[\e[3;37m\]\[\e[40m\][\u@\H]\[\e[0m\]\[\e[0;37m\]:\W $\[\e[0m\] "
 
-# ---	Source custom aliases
-if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
-fi
-
-# ---	Source profile
-if [ -f ~/.profile ]; then
-	. ~/.profile
-fi
-
-# ---	Source custom functions
-if [ -f ~/.bash_custom ]; then
-	. ~/.bash_custom
+# --- Source profile
+if [ -f ~/.config/bash/profile ]; then
+	. ~/.config/bash/profile
 fi
