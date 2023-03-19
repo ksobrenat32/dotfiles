@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# Add home bin path
+if [ -d ~/.local/bin ]; then
+    export PATH="$PATH:~/.local/bin"
+fi
+
 # Use vim as default editor
 export SELECTED_EDITOR="/usr/bin/vim"
 export EDITOR="/usr/bin/vim"
@@ -22,4 +27,7 @@ if [ -f ~/.config/bash/aliases ]; then
 fi
 
 # Source custom scripts
-source ~/.config/bash/*.bash
+for f in $(ls ~/.config/bash/*.bash)
+do
+    source $f
+done
