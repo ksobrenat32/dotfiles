@@ -18,7 +18,7 @@ alias lt='ls -a --human-readable --size -1 -S --classify'
 
 # random generator
 alias rand='openssl rand -base64 32'
-alias randy='cat /dev/urandom | LC_ALL=C tr -dc 'A-Za-z0-9' | head -c 32 && echo'
+alias randy='cat /dev/urandom | LC_ALL=C tr -dc '[:alnum:]' | head -c 32 && echo'
 
 # monitoring
 alias ramfo='free -mlth'
@@ -28,7 +28,8 @@ alias psgrep='ps ax | grep'
 
 # network
 alias pind='ping -c 5 debian.org'
-alias pbip4="curl api4.ipify.org"
-alias pbip6="curl api6.ipify.org"
+alias pbip4="curl api4.ipify.org && echo"
+alias pbip6="curl api6.ipify.org && echo"
 alias public-ports-scan='nmap -v -T4 -sV -A -p 1-65535'
 alias local-ports='netstat -tulanp'
+alias local-http='python -m http.server 9000'
