@@ -32,7 +32,9 @@ if [ "$1" == "-y" ]; then
     [ -x "$(command -v flatpak)" ] && \
         echo " --- Upgrading flatpak" && \
         flatpak --user -y update && \
-        flatpak --system -y update
+        flatpak --user -y uninstall --unused && \
+        flatpak --system -y update && \
+        flatpak --system -y uninstall --unused
     ## If having toolbox (It uses dnf because toolbox is mainly used with fedora)
     [ -x "$(command -v toolbox)" ] && \
         echo " --- Upgrading main toolbox" && \
@@ -68,7 +70,9 @@ fi
 [ -x "$(command -v flatpak)" ] && \
     echo " --- Upgrading flatpak" && \
     flatpak --user update && \
-    flatpak --system update
+    flatpak --user uninstall --unused && \
+    flatpak --system update && \
+    flatpak --system uninstall --unused
 ## If having toolbox (It uses dnf because toolbox is mainly used with fedora)
 [ -x "$(command -v toolbox)" ] && \
     echo " --- Upgrading main toolbox" && \
