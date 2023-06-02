@@ -26,6 +26,11 @@ if [ -f ~/.config/bash/aliases ]; then
 	. ~/.config/bash/aliases
 fi
 
+# Source Functions
+if [ -f ~/.config/bash/functions ]; then
+	. ~/.config/bash/functions
+fi
+
 # Source custom scripts
 for f in $(ls ~/.config/bash/*.bash)
 do

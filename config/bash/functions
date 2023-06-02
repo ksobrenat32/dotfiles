@@ -1,0 +1,12 @@
+#!/bin/sh
+
+compressPDF(){
+    gs -sDEVICE=pdfwrite \
+        -dCompatibilityLevel=1.4 \
+        -dPDFSETTINGS=/ebook \
+        -dNOPAUSE \
+        -dQUIET \
+        -dBATCH \
+        -sOutputFile="compressed.${1}" "${1}"
+}
+
