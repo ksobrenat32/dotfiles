@@ -26,6 +26,8 @@ set splitright
 set diffopt=vertical
 " Configure indents as 4 spaces
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+" set the backspace to delete normally
+set backspace=indent,eol,start
 
 " --- Plugins (Install https://github.com/junegunn/vim-plug)
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
