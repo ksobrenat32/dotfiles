@@ -32,7 +32,11 @@ if [ -f ~/.config/bash/functions ]; then
 fi
 
 # Source custom scripts
-for f in $(ls ~/.config/bash/*.bash)
-do
-    source $f
-done
+if [ -n "$(ls -A ~/.config/bash/*.bash 2>/dev/null)" ]
+then
+    for f in $(ls ~/.config/bash/*.bash)
+    do
+        source $f
+    done
+fi
+
