@@ -15,6 +15,7 @@ alias nohis='set +o history'
 alias hig='history | grep'
 alias svim='sudo vim'
 alias lt='ls -a --human-readable --size -1 -S --classify'
+alias srm='shred --zero --verbose -u'
 
 # random generator
 alias rand='openssl rand -base64 32'
