@@ -12,6 +12,11 @@ cg(){
     cd ~/.local/git/
 }
 
+# cd to cpcfi
+cpcfi(){
+    cd ~/.local/git/cpcfi/problems/cses
+}
+
 # Git pull all repositories
 gipul(){
     for GITDIR in $(find ~/.local/git -name '*.git' -not -path "/var/home/ksobrenat32/.local/git/cpcfi/theory/*" -print0 | xargs -0 -n1 dirname)
@@ -95,9 +100,9 @@ alias fcen='podman run -it --rm quay.io/centos/centos:stream10 bash'
 alias fdeb='podman run -it --rm docker.io/library/debian:12 bash'
 
 # AI
-alias ollama='podman run -d --replace -p 11434:11434 -v /home/ksobrenat32/.local/opt/ollama:/root/.ollama:Z --name ollama docker.io/ollama/ollama serve'
-alias ochat='podman exec -it ollama ollama run gemma3:4b'
-alias ochat-pro='podman exec -it ollama ollama run deepseek-r1:8b'
+alias ollama-start='podman run -d --replace -p 11434:11434 -v /home/ksobrenat32/.local/opt/ollama:/root/.ollama:Z --name ollama docker.io/ollama/ollama serve'
+alias ollama-stop='podman stop ollama'
+alias ollama='podman exec -it ollama ollama'
 
 # Enviroment variables
 
@@ -111,15 +116,12 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 # Go install
 export GOPATH=$HOME/.local/opt/go
 
-# CPCFI scripts
-export PATH="$PATH:~/.local/git/FI/cpcfi/scripts"
-
 # Docker podman
 export DOCKER_HOST=unix:///run/user/${UID}/podman/podman.sock
 
-# Quartus
-export QSYS_ROOTDIR="/home/ksobrenat32/.local/opt/intel_fpga/quartus/sopc_builder/bin"
+# NPM packages path
+export PATH=~/.npm-global/bin:$PATH
 
-# Terraform
-complete -C /usr/bin/terraform terraform
+# Quartus
+export QSYS_ROOTDIR=".local/opt/intelFPGA_lite/quartus/sopc_builder/bin"
 
