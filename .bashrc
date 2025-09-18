@@ -49,3 +49,5 @@ PS1="\[\e[3;33m\]\[\e[40m\][\u@\H]\[\e[0m\]\[\e[0;37m\]:\W $\[\e[0m\] "
 if [ -f ~/.config/bash/profile ]; then
 	. ~/.config/bash/profile
 fi
+
+export QSYS_ROOTDIR="/home/ksobrenat32/.local/opt/intelFPGA_lite/quartus/sopc_builder/bin"
