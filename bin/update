@@ -1,73 +1,109 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 set -e
 
-# Script that updates a desktop, with apt, dnf(and rpm-ostree) or pacman, also flatpak and toolbox.
-
+# Default to non-interactive mode
+INTERACTIVE=true
 if [ "$1" == "-y" ]; then
-    ## Common package manager
-    if [ -x "$(command -v apt)" ];
-    then
-        echo " --- Upgrading with apt" && \
-            sudo apt -y update && \
-            sudo apt -y upgrade && \
-            sudo apt -y autoremove
-    elif [ -x "$(command -v dnf)" ];
-    then echo " --- Upgrading with dnf" && \
+    INTERACTIVE=false
+fi
+
+# Function to print a header
+print_header() {
+    echo " --- $1"
+}
+
+# --- Package Manager Functions ---
+
+update_apt() {
+    print_header "Upgrading with apt"
+    if $INTERACTIVE; then
+        sudo apt update && sudo apt upgrade && sudo apt autoremove
+    else
+        sudo apt -y update && \
+        sudo apt -y upgrade && \
+        sudo apt -y autoremove
+    fi
+}
+
+update_dnf() {
+    print_header "Upgrading with dnf"
+    if $INTERACTIVE; then
+        sudo dnf update && \
+        sudo dnf autoremove
+    else
         sudo dnf -y update && \
         sudo dnf -y autoremove
-    elif [ -x "$(command -v rpm-ostree)" ];
-    then
-        echo " --- Upgrading with rpm-ostree" && \
-            rpm-ostree upgrade
-    elif [ -x "$(command -v pacman)" ];
-    then
-        echo " --- Upgrading with pacman" && \
-            sudo pacman -Syu --noconfirm
-    else
-        echo "Failed to identy package manager :(, upgrade by yourself";
     fi
+}
 
-    ## If having flatpak
-    [ -x "$(command -v flatpak)" ] && \
-        echo " --- Upgrading flatpak" && \
+update_rpm_ostree() {
+    print_header "Upgrading with rpm-ostree"
+    rpm-ostree upgrade
+}
+
+update_pacman() {
+    print_header "Upgrading with pacman"
+    if $INTERACTIVE; then
+        sudo pacman -Syu
+    else
+        sudo pacman -Syu --noconfirm
+    fi
+}
+
+update_flatpak() {
+    print_header "Upgrading flatpak"
+    if $INTERACTIVE; then
+        flatpak --user update && \
+        flatpak --user uninstall --unused && \
+        flatpak --system update && \
+        flatpak --system uninstall --unused
+    else
         flatpak --user -y update && \
         flatpak --user -y uninstall --unused && \
         flatpak --system -y update && \
         flatpak --system -y uninstall --unused
+    fi
+}
+
+update_pip() {
+    print_header "Upgrading pip packages"
+    pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip install -U
+}
+
+update_npm() {
+    print_header "Upgrading npm packages"
+    npm update -g
+}
+
+# --- Main Function ---
+
+main() {
+    if [ -x "$(command -v apt)" ]; then
+        update_apt
+    elif [ -x "$(command -v dnf)" ]; then
+        update_dnf
+    elif [ -x "$(command -v rpm-ostree)" ]; then
+        update_rpm_ostree
+    elif [ -x "$(command -v pacman)" ]; then
+        update_pacman
+    else
+        echo "Failed to identify package manager :(, upgrade by yourself"
+    fi
+
+    if [ -x "$(command -v flatpak)" ]; then
+        update_flatpak
+    fi
+
+    if [ -x "$(command -v pip)" ]; then
+        update_pip
+    fi
+
+    if [ -x "$(command -v npm)" ]; then
+        update_npm
+    fi
 
     echo " --- Done ;)"
-    exit 0
-fi
+}
 
-## Common package manager
-if [ -x "$(command -v apt)" ];
-then
-    echo " --- Upgrading with apt" && \
-        sudo apt update && \
-        sudo apt upgrade && \
-        sudo apt autoremove
-elif [ -x "$(command -v dnf)" ];
-then echo " --- Upgrading with dnf" && \
-    sudo dnf update && \
-    sudo dnf autoremove
-elif [ -x "$(command -v rpm-ostree)" ];
-then
-    echo " --- Upgrading with rpm-ostree" && \
-        rpm-ostree upgrade
-elif [ -x "$(command -v pacman)" ];
-then
-    echo " --- Upgrading with pacman" && \
-        sudo pacman -Syu
-else
-    echo "Failed to identy package manager :(, upgrade by yourself";
-fi
-
-## If having flatpak
-[ -x "$(command -v flatpak)" ] && \
-    echo " --- Upgrading flatpak" && \
-    flatpak --user update && \
-    flatpak --user uninstall --unused && \
-    flatpak --system update && \
-    flatpak --system uninstall --unused
-echo " --- Done ;)"
+main "$@"
