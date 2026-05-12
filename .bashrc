@@ -50,4 +50,3 @@ if [ -f ~/.config/bash/profile ]; then
 	. ~/.config/bash/profile
 fi
 
-export QSYS_ROOTDIR="/home/ksobrenat32/.local/opt/intelFPGA_lite/quartus/sopc_builder/bin"
