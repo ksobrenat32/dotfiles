@@ -12,11 +12,6 @@ cg(){
     cd ~/.local/git/
 }
 
-# cd to cpcfi
-cpcfi(){
-    cd ~/.local/git/cpcfi/problems/cses
-}
-
 # Git pull all repositories
 gipul(){
     for GITDIR in $(find ~/.local/git -name '*.git' -not -path "/var/home/ksobrenat32/.local/git/cpcfi/theory/*" -print0 | xargs -0 -n1 dirname)
@@ -40,23 +35,19 @@ gista(){
 
 backup-home(){
     restic --repo sftp:moon:/var/home/core/backup/@workstation  \
-        --verbose backup --one-file-system $HOME \
-        --exclude="*.class" \
-        --exclude="*.o" \
-        --exclude=".git/" \
-        --exclude="tmp/" \
-        --exclude="sdk/" \
-        --exclude="Downloads/**" \
-        --exclude="Pictures/Screenshots/**" \
+        --verbose backup --one-file-system \
         --exclude=".cache/**" \
-        --exclude=".local/git/**" \
-        --exclude=".local/tmp/**" \
-        --exclude=".local/share/containers/**" \
-        --exclude=".local/share/Trash/**" \
+        --exclude=".git/" \
         --exclude=".local/opt/**" \
+        --exclude=".local/share/Trash/**" \
+        --exclude=".local/share/containers/**" \
         --exclude=".minikube/**" \
         --exclude=".var/app/**/cache/**" \
-        --exclude=".var/app/com.valvesoftware.Steam/**"
+        --exclude=".var/app/com.valvesoftware.Steam/**" \
+        --exclude="Downloads/**" \
+        --exclude="Pictures/Screenshots/**" \
+        --exclude="tmp/" \
+        $HOME
 }
 
 rmnt(){
@@ -77,32 +68,12 @@ rmnt(){
     esac
 }
 
-cop(){
-    # If it is written in C
-    if [[ $1 == *.c ]]; then
-        gcc -g3 -o3 -Wall -Werror -pipe "$1" -o "${1%.c}.o"
-    fi
-
-    # If it is written in C++
-    if [[ $1 == *.cpp ]]; then
-        g++ -g3 -o3 -Wall -Werror -pipe "$1" -o "${1%.cpp}.o"
-    fi
-
-    # If it is written in Java
-    if [[ $1 == *.java ]]; then
-        javac $1
-    fi
-}
-
 # Custom bash aliases
 # Podman fast containers
-alias fcen='podman run -it --rm quay.io/centos/centos:stream10 bash'
-alias fdeb='podman run -it --rm docker.io/library/debian:12 bash'
-
-# AI
-alias ollama-start='podman run -d --replace -p 11434:11434 -v /home/ksobrenat32/.local/opt/ollama:/root/.ollama:Z --name ollama docker.io/ollama/ollama serve'
-alias ollama-stop='podman stop ollama'
-alias ollama='podman exec -it ollama ollama'
+alias fcentos='podman run -it --rm quay.io/centos/centos:stream10 bash'
+alias frockyl='podman run -it --rm docker.io/rockylinux/rockylinux:10 bash'
+alias fdebian='podman run -it --rm docker.io/library/debian:13 bash'
+alias ffedora='podman run -it --rm registry.fedoraproject.org/fedora:44 bash'
 
 # Enviroment variables
 
@@ -121,7 +92,3 @@ export DOCKER_HOST=unix:///run/user/${UID}/podman/podman.sock
 
 # NPM packages path
 export PATH=~/.npm-global/bin:$PATH
-
-# Quartus
-export QSYS_ROOTDIR=".local/opt/intelFPGA_lite/quartus/sopc_builder/bin"
-
