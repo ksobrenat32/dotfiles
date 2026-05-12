@@ -8,6 +8,9 @@ if [ "$1" == "-y" ]; then
     INTERACTIVE=false
 fi
 
+# Ask for the administrator password upfront
+sudo -v
+
 # Function to print a header
 print_header() {
     echo " --- $1"
@@ -29,9 +32,11 @@ update_apt() {
 update_dnf() {
     print_header "Upgrading with dnf"
     if $INTERACTIVE; then
+        sudo dnf clean all && \
         sudo dnf update && \
         sudo dnf autoremove
     else
+        sudo dnf clean all && \
         sudo dnf -y update && \
         sudo dnf -y autoremove
     fi
@@ -39,7 +44,7 @@ update_dnf() {
 
 update_rpm_ostree() {
     print_header "Upgrading with rpm-ostree"
-    rpm-ostree upgrade
+    sudo rpm-ostree upgrade
 }
 
 update_pacman() {
@@ -66,14 +71,9 @@ update_flatpak() {
     fi
 }
 
-update_pip() {
-    print_header "Upgrading pip packages"
-    pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip install -U
-}
-
 update_npm() {
     print_header "Upgrading npm packages"
-    npm update -g
+    sudo npm update -g
 }
 
 # --- Main Function ---
@@ -93,10 +93,6 @@ main() {
 
     if [ -x "$(command -v flatpak)" ]; then
         update_flatpak
-    fi
-
-    if [ -x "$(command -v pip)" ]; then
-        update_pip
     fi
 
     if [ -x "$(command -v npm)" ]; then
